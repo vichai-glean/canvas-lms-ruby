@@ -1143,6 +1143,8 @@ CanvasRails::Application.routes.draw do
   # the way ApiRouteSet works. For now we get around it by defining methods
   # inline in the routes file, but getting concerns working would rawk.
   ApiRouteSet::V1.draw(self) do
+    # Direct API Authentication endpoint
+    post "auth/login" => "api_auth#login", :as => :api_auth_login
     scope(controller: :courses) do
       get "courses", action: :index, as: "courses"
       put "courses/:id", action: :update
